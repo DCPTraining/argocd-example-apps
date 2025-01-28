@@ -1,3 +1,9 @@
+# templates/_helpers.tpl
+{{- define "helm.annotations" -}}
+annotations:
+  argocd.argoproj.io/managed-by: helm
+{{- end -}}
+
 {{/* vim: set filetype=mustache: */}}
 {{/*
 Expand the name of the chart.
