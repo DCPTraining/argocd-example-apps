@@ -1,0 +1,22 @@
+# argocd-application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-app
+  namespace: argo
+spec:
+  project: codeai
+  source:
+    repoURL: 'https://github.com/DCPTraining/argocd-example-apps.git'
+    path: 'helm-guestbook'
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: codeai-dev-patest
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  ignoreDifferences:
+    - jsonPointers:
+        - /metadata/annotations/argocd.argoproj.io~1managed-by
